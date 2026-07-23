@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tesseract — Chat App</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236C63FF'/><path d='M28 36h44v2H28zM28 44h34v2H28zM28 52h24v2H28z' fill='white'/><circle cx='76' cy='76' r='18' fill='%234CAF50'/><path d='M70 76l4 4 8-8' stroke='white' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0f0f1a;
+      color: #e0e0e8;
+      line-height: 1.6;
+    }
+    .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+    .hero {
+      text-align: center;
+      padding: 80px 0 40px;
+    }
+    .hero .logo {
+      font-size: 56px;
+      margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-size: 48px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #6C63FF, #E040FB);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+    }
+    .hero p {
+      font-size: 18px;
+      color: #8888a8;
+      max-width: 600px;
+      margin: 0 auto 32px;
+    }
+
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #6C63FF;
+      color: #fff;
+      padding: 16px 36px;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .download-btn:hover { background: #5A52D5; }
+    .download-btn small {
+      font-weight: 400;
+      font-size: 13px;
+      opacity: 0.8;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(108,99,255,0.15);
+      color: #6C63FF;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .section {
+      padding: 60px 0;
+    }
+    .section h2 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 32px;
+      text-align: center;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .feature-card {
+      background: #1a1a2e;
+      border: 1px solid #2a2a3e;
+      border-radius: 14px;
+      padding: 28px;
+      transition: border-color 0.2s;
+    }
+    .feature-card:hover { border-color: #6C63FF; }
+    .feature-card .icon { font-size: 32px; margin-bottom: 12px; }
+    .feature-card h3 { font-size: 17px; margin-bottom: 8px; }
+    .feature-card p { font-size: 14px; color: #8888a8; }
+
+    .instructions {
+      background: #1a1a2e;
+      border: 1px solid #2a2a3e;
+      border-radius: 14px;
+      padding: 32px;
+    }
+    .instructions ol {
+      margin: 0 0 0 20px;
+    }
+    .instructions li {
+      margin-bottom: 16px;
+      font-size: 15px;
+    }
+    .instructions code {
+      background: rgba(108,99,255,0.12);
+      color: #6C63FF;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    .instructions .cmd {
+      display: block;
+      background: #0d0d1a;
+      color: #f8f8f2;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      margin: 8px 0;
+    }
+
+    .requirements-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 16px 0;
+    }
+    .requirements-list span {
+      background: rgba(108,99,255,0.1);
+      color: #e0e0e8;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      border: 1px solid #2a2a3e;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 40px 0;
+      color: #555;
+      font-size: 13px;
+      border-top: 1px solid #2a2a3e;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 32px; }
+      .hero { padding: 40px 0 20px; }
+      .features-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <section class="hero">
+      <div class="logo">💬</div>
+      <div class="badge">v1.0 — Open Source</div>
+      <h1>Tesseract</h1>
+      <p>A private, multi-user chat app with direct messaging, file sharing, voice recording, and local AI — no cloud required.</p>
+      <a href="#" class="download-btn" id="download-link">
+        ⬇️ Download Tesseract
+        <small>ZIP ~2 MB</small>
+      </a>
+    </section>
+
+    <section class="section">
+      <h2>Features</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="icon">💬</div>
+          <h3>Direct Messages</h3>
+          <p>Private 1-on-1 conversations. Full chat history saved locally.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">📎</div>
+          <h3>File Sharing</h3>
+          <p>Send photos, videos, and audio files directly in chat.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">🎤</div>
+          <h3>Voice Recording</h3>
+          <p>Record and send voice messages with one click.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">🔍</div>
+          <h3>User Search</h3>
+          <p>Find any user and start a conversation instantly.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">🔒</div>
+          <h3>Private Server</h3>
+          <p>Run your own server. No data leaves your network.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">🗄️</div>
+          <h3>Persistent History</h3>
+          <p>All messages stored in SQLite — never lose a conversation.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>How to Install</h2>
+      <div class="instructions">
+        <ol>
+          <li>
+            <strong>Download & extract</strong> the ZIP file above.
+          </li>
+          <li>
+            <strong>Install Python 3.9+</strong> if you don't have it:
+            <span class="cmd">python3 --version</span>
+          </li>
+          <li>
+            <strong>Install dependencies</strong>:
+            <span class="cmd">pip install -r requirements.txt</span>
+          </li>
+          <li>
+            <strong>Run the app</strong>:
+            <span class="cmd">python3 client.py</span>
+          </li>
+          <li>
+            Click <strong>"Start Server"</strong> to host, or connect to a friend's server IP.
+            Register an account and start chatting!
+          </li>
+        </ol>
+      </div>
+
+      <h3 style="margin-top: 32px; font-size: 18px;">Requirements</h3>
+      <div class="requirements-list">
+        <span>🐍 Python 3.9+</span>
+        <span>⚡ PySide6</span>
+        <span>🔌 Flask-SocketIO</span>
+        <span>🎵 sounddevice</span>
+        <span>🗄️ SQLite</span>
+      </div>
+    </section>
+
+    <section class="section" style="text-align:center;">
+      <p style="color:#8888a8; margin-bottom: 16px;">Want to contribute or report a bug?</p>
+      <a href="https://github.com/abdulhadi/tesseract-chat" style="color:#6C63FF;">GitHub Repository →</a>
+    </section>
+
+    <div class="footer">
+      Tesseract — Built with Python &amp; PySide6
+    </div>
+  </div>
+
+  <script>
+    fetch('tesseract-chat-app.zip')
+      .then(r => {
+        if (r.status === 200) {
+          document.getElementById('download-link').href = 'tesseract-chat-app.zip';
+        }
+      })
+      .catch(() => {});
+  </script>
+</body>
+</html>
